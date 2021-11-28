@@ -43,7 +43,7 @@ module.exports = (db) => {
   // get order status by user id
   router.get('/:id/order/status', (req, res) => {
     const userId = req.params.id;
-    db.getStatusFromHistory(userId)
+    db.getOrderStatus(userId)
       .then(data => res.json(data))
       .catch(err => {
         console.log(err.message);
