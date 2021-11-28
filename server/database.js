@@ -6,12 +6,17 @@ db.connect(() =>  console.log(`Connected to database`));
 // Users & Owner
 // get all foods from database
 const getAllFoods = () => {
-
+  return db
+    .query(`
+    SELECT *
+    FROM foods;
+    `)
+    .then(res => res.rows);
 };
 exports.getAllFoods = getAllFoods;
 
 // Users
-// get user's information by id
+// get user's information by user id
 const getUserById = (id) => {
   return db
     .query(`
@@ -22,20 +27,34 @@ const getUserById = (id) => {
     .then(res => res.rows[0]);
 };
 exports.getUserById = getUserById;
-// get user's order status
-const getStatusFromHistory = (id) => {
-
+// get order status by user id
+const getOrderStatus = (user_id) => {
+  return db
+    .query(`
+    SELECT created_at, accepted_at, ready_at, picked_up_at
+    FROM orders
+    JOIN order_histories ON order_id = orders.id
+    WHERE orders.user_id = $1;
+    `, [user_id])
+    .then(res => res.rows);
 };
-exports.getStatusFromHistory = getStatusFromHistory;
+exports.getOrderStatus = getOrderStatus;
 // user places an order
-const addOrder = (order) => {
-
+const addOrder = (order, userId) => {
+  const { quantity, total_price, created_at } = order;
+  return db
+    .query(`
+    INSERT INTO orders (user_id, quantity, total_price, created_at)
+    VALUES ($1, $2, $3, $4);
+    `, [quantity, total_price, created_at, userId])
+    .then(res => res.rows);
 };
 exports.addOrder = addOrder;
 
 // Owner
 // get new order / order status - your order has been sent to the restaurant
 const getNewOrder = () => {
+
 
 };
 exports.getNewOrder = getNewOrder;
