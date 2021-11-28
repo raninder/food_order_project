@@ -14,29 +14,13 @@
   4. delete order on the order list when user picks up the order
 
 
-* ## server
-  * GET
-    1. menu (foods, drinks)
-    2. pictures of menu
-    
-  * POST
-    1. update new foods (Managaer)
-
-
-  * PUT
-
-  * DELETE
-    1. remove foods from cart (User)
-    2. remove foods from the menu (Manager)
-    3. remove order from the order list (Manager)
-
-
-1. when user orders, send SMS to manager
-2. when manager confirm the order, send SMS to user
+* ## work flow
+1. when user make an order, send SMS to manager
+2. when manager confirms the order, send SMS to user
 3. count the estimate time (stretch?)
 4. send SMS to user when the order is ready in 5 mins (stretch?)
-5. when manager press ready button, send SMS to user
-6. when manager press picked up button, delete the order on the order list
+5. when manager press ready button (= when order is ready), send SMS to user
+6. when manager press picked up button(= when user picked up the order), delete the order on the order list
 
 
 * ## order status (website, SMS)
@@ -45,7 +29,6 @@
      the estimated time is 20 mins
   2. your order will be ready in 5 mins
   3. your order is ready to pick up 
-
 
 
 ## stretch
