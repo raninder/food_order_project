@@ -13,7 +13,13 @@ exports.getAllFoods = getAllFoods;
 // Users
 // get user's information by id
 const getUserById = (id) => {
-
+  return db
+    .query(`
+    SELECT *
+    FROM users
+    WHERE id = $1;
+    `, [id])
+    .then(res => res.rows[0]);
 };
 exports.getUserById = getUserById;
 // get user's order status
