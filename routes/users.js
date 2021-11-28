@@ -21,7 +21,7 @@ module.exports = (db) => {
   });
 
   // get all the menu from foods table
-  router.get('/', (req, res) => {
+  router.get('/menu', (req, res) => {
     db.getAllFoods()
       .then(data => res.json(data))
       .catch(err => {
