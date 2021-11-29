@@ -38,7 +38,7 @@ module.exports = (db) => {
 
   // the order is ready
   router.post('/orders', (req, res) => {
-    db.readyToPickUp(orderId)
+    db.orderIsReady(orderId)
       .then(order => res.json(order))
       .catch(err => console.log(err.message));
   });
@@ -69,28 +69,28 @@ module.exports = (db) => {
 
   // add new food
   router.post('/menu', (req, res) => {
-    db.addNewFood(food)
+    db.addNewFood(food_info)
       .then(foods => res.json(foods))
       .catch(err => console.log(err.message));
   });
 
   // change food status (unavailable / available)
   router.post('/menu', (req, res) => {
-    db.soldOut(food_id)
+    db.soldOut(foodId)
       .then(foods => res.json(foods))
       .catch(err => console.log(err.message));
   });
 
   // delete food
   router.post('/menu/delete', (req, res) => {
-    db.deleteFood(food_id)
+    db.deleteFood(foodId)
       .then(foods => res.json(foods))
       .catch(err => console.log(err.message));
   });
 
   // edit food
   router.post('/menu/edit', (req, res) => {
-    db.editFood(eidit_food)
+    db.editFood(eidit_food, foodId)
       .then(foods => res.json(foods))
       .catch(err => err.message);
   });
