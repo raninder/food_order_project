@@ -1,3 +1,4 @@
+const { urlencoded } = require("express");
 const { Pool } = require("pg");
 const dbParams = require("../lib/db.js");
 const db = new Pool(dbParams);
@@ -184,9 +185,9 @@ const deleteFood = (foodId) => {
 };
 exports.deleteFood = deleteFood;
 // able to change picture, price, estimated time
-const editFood = (edit, foodId) => {
-  const { name, in_stock, picture_url, estimated_time, price } = edit;
-  const queryParams = [name, in_stock, picture_url, estimated_time, price, foodId];
+const editFood = (edit) => {
+  const { food_id, name, in_stock, picture_url, estimated_time, price } = edit;
+  const queryParams = [name, in_stock, picture_url, estimated_time, price, food_id];
   const queryString = `
   UPDATE foods
   SET name = $1, in_stock = $2, picture_url = $3, estimated_time = $4, price = $5
