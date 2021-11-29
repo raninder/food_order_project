@@ -7,6 +7,7 @@
 
 const express = require('express');
 const router = express.Router();
+const sms = require('../server/sms');
 
 module.exports = (db) => {
 // get user's information from users table
