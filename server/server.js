@@ -46,7 +46,7 @@ app.use("/owner", ownerRoutes(db));
 // Separate them into separate routes files (see above).
 
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("customer_side");
 });
 
 app.listen(PORT, () => {

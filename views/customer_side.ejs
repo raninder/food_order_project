@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Welcome to Restaurant Title</title>
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+
+  <link rel="stylesheet" href="/styles/customer_facing_css/main2.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/customer_facing_css/order_area.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/customer_facing_css/foods.css" type="text/css" />
+
+
+  <link rel="stylesheet" href="/styles/customer_facing_css/layout.css" type="text/css" />  
+
+
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+
+  <!-- external js -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+  integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+  <!-- Top nav bar (fixed) -->
+  <nav>
+    <div >
+      <div id = "page_title">Restaurant Title</div>
+    </div>
+
+    <div class="header_items">
+
+          <div id="menu">
+            <i class="fas fa-utensils"></i>
+          </div>
+
+          
+          <div class = "user_purchase_icons">
+            <div  id="user_icon"><i class="far fa-user"></i></div>
+            <div>Hello, User</div>
+            
+          </div>
+        </div>
+        
+
+        <div class= "menu_your_order_buttons"> 
+          <div id="menu_button" ><button type="button">Menu</button></div>
+          <div id="your_order_button"><button type="button">Your Order</button></div>
+        </div>
+
+  </nav>
+  
+  <div class="order_area">
+
+    <div class= "order_list">
+      <div id= "order_area_title">Your Current Order:</div>
+      <div class="chosen_items" >        
+          <div class= "food_picked"></div>
+          <div class= "food_picked"></div>
+          <div class= "food_picked"></div>
+      </div>
+    </div>
+
+    <div class="order_icon"><i class="fas fa-money-check-alt"></i></div>
+
+  </div>
+
+
+
+
+    <!-- Page-specific (main) content here -->
+    <div class="wrap_dish_area">    
+      <div class="dish_area">
+        <h2>Available Dishes</h2>
+          <main class="foods">
+            <div class= "dish"></div>
+            <div class= "dish"></div>
+            <div class= "dish"></div>
+            <div class= "dish"></div>
+            <div class= "dish"></div>
+            <div class= "dish"></div>
+            <!-- <div class= "dish"></div>
+            <div class= "dish"></div> -->
+          </main>
+      </div>
+    </div>
+
+
+
+
+
+</body>
+
+</html>
