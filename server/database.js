@@ -28,78 +28,192 @@ const getUserById = (id) => {
 };
 exports.getUserById = getUserById;
 // get order status by user id
-const getOrderStatus = (user_id) => {
+const getOrderStatus = (userId) => {
   return db
     .query(`
-    SELECT created_at, accepted_at, ready_at, picked_up_at
+    SELECT *
     FROM orders
-    JOIN order_histories ON order_id = orders.id
     WHERE orders.user_id = $1;
-    `, [user_id])
-    .then(res => res.rows);
+    `, [userId])
+    .then(res => res.rows[0]);
 };
 exports.getOrderStatus = getOrderStatus;
 // user places an order
 const addOrder = (order, userId) => {
-  const { quantity, total_price, created_at } = order;
+  // if the order data is in the array
+  // order =
+  // [ { food_id : 1, quantity: 2, price: 10},
+  //   { food_id : 3, quantity: 5, price: 90},
+  //   { food_id : 4, quantity: 2, price: 50} ];
+  // if the order data is in the object
+  // order =
+  // {  1 : { quantity: 2, price: 10},
+  //   3 : { quantity: 5, price: 90},
+  //   4 : { quantity: 2, price: 50} };
+
+  // let totalPrice = 0;
+  // // if it's arr
+  // order.forEach(order => totalPrice += order.price);
+  // // if it's obj
+  // for (const or in order) {
+  //   totalPrice += order[or].price;
+  // }
+
   return db
     .query(`
-    INSERT INTO orders (user_id, quantity, total_price, created_at)
-    VALUES ($1, $2, $3, $4);
-    `, [quantity, total_price, created_at, userId])
-    .then(res => res.rows);
+    INSERT INTO orders (user_id, total_price, created_at)
+    VALUES ($1, $2, Now())
+    RETURNING *;
+    `, [userId, totalPrice])
+    .then((res) => {
+      const orderId = res.rows[0].id;
+      for (const id in order) {
+        db.query(`
+        INSERT INTO order_details ( order_id, food_id, quantity )
+        VALUES ($1, $2, $3)
+        RETURNING *;
+        `, [orderId, id, order[id].quantity])
+          .then(res => res.rows);
+      }
+    });
 };
 exports.addOrder = addOrder;
 
 // Owner
 // get new order / order status - your order has been sent to the restaurant
 const getNewOrder = () => {
-
-
+  return db
+    .query(`
+    SELECT *
+    FROM orders
+    AND picked_up_at IS NULL;
+    AND ready_at IS NULL
+    AND confirmed_at IS NULL
+    WHERE created_at IS NOT NULL
+    `)
+    .then(res => res.rows);
 };
 exports.getNewOrder = getNewOrder;
-// order status - your order has been placed. restaurant is preparing your food.
-const placeOrder = () => {
-
+// confirm the order
+const placeOrder = (orderId) => {
+  return db
+    .query(`
+    UPDATE orders
+    SET confirmed_at = Now()
+    WHERE id = $1
+    RETURNING *;
+    `, [orderId])
+    .then(res => res.rows);
 };
 exports.placeOrder = placeOrder;
-// order status - your order is ready to pick up
-const readyToPickUp = () => {
-
+// order status - restaurant is preparing your food.
+const getPlacedOrder = () => {
+  return db
+    .query(`
+    SELECT *
+    FROM orders
+    AND picked_up_at IS NULL;
+    AND ready_at IS NULL
+    AND confirmed_at IS NOT NULL
+    WHERE created_at IS NOT NULL
+    `);
 };
-exports.readyToPickUp = readyToPickUp;
+exports.getPlacedOrder = getPlacedOrder;
+
+// order status - your order is ready to pick up
+const orderIsReady = (orderId) => {
+  return db
+    .query(`
+    UPDATE orders
+    SET ready_at = Now()
+    WHERE id = $1
+    RETURNING *;
+    `, [orderId])
+    .then(res => res.rows);
+};
+exports.orderIsReady = orderIsReady;
 // get prepared foods
 const getFoodsAreReady = () => {
-
+  return db
+    .query(`
+    SELECT *
+    FROM orders
+    WHERE picked_up_at IS NULL
+    AND ready_at IS NOT NULL;
+    AND confirmed_at IS NOT NULL
+    AND created_at IS NOT NULL
+    `);
 };
 exports.getFoodsAreReady = getFoodsAreReady;
 // order status - you has picked up your food
-const pickedUp = () => {
-
+const pickedUp = (orderId) => {
+  return db
+    .query(`
+    UPDATE orders
+    SET picked_up_at = Now()
+    WHERE id = $1
+    RETURNING *;
+    `, [orderId])
+    .then(res => res.rows);
 };
 exports.pickedUp = pickedUp;
 
-const addNewFood = () => {
+const addNewFood = (food) => {
+  const { name, picture_url, estimated_time, price } = food;
+  const queryParams = [name, picture_url, estimated_time, price];
+  const queryString = `
+  INSERT INTO foods (name, picture_url, estimated_time, price)
+  VALUES ($1, $2, $3, $4)
+  RETURNING *;`;
 
+  return db.query(queryString, queryParams).then(res => res.rows);
 };
 exports.addNewFood = addNewFood;
 // make the food unavailable
-const soldOut = () => {
-
+const soldOut = (foodId) => {
+  return db
+    .query(`
+    UPDATE foods
+    SET in_stock = FALSE
+    WHERE id = $1
+    RETURNING *;
+    `, [foodId])
+    .then(res => res.rows);
 };
 exports.soldOut = soldOut;
 // delete food from database
-const deleteFood = () => {
-
+const deleteFood = (foodId) => {
+  return db
+    .query(`
+    DELETE FROM foods
+    WHERE id = $1;
+    `, [foodId])
+    .then(res => res.rows);
 };
 exports.deleteFood = deleteFood;
 // able to change picture, price, estimated time
-const editFood = () => {
+const editFood = (edit, foodId) => {
+  const { name, in_stock, picture_url, estimated_time, price } = edit;
+  const queryParams = [name, in_stock, picture_url, estimated_time, price, foodId];
+  const queryString = `
+  UPDATE foods
+  SET name = $1, in_stock = $2, picture_url = $3, estimated_time = $4, price = $5
+  WHERE id = $6
+  RETURNING *;`;
 
+  return db.query(queryString, queryParams).then(res => res.rows);
 };
 exports.editFood = editFood;
 // get totall order history (limit - 20)
-const getOrderHistories = () => {
-
+const getOrderHistories = (limit = 20) => {
+  return db
+    .query(`
+    SELECT orders.*, order_details.*
+    FROM orders
+    LEFT JOIN orders ON orders.id = order_id
+    ORDER BY orders.id DESC
+    LIMIT $1;
+    `, [limit])
+    .then(res => res.rows);
 };
 exports.getOrderHistories = getOrderHistories;
