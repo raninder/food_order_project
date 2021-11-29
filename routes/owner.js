@@ -7,6 +7,7 @@
 
 const express = require('express');
 const router = express.Router();
+const sms = require('../server/sms');
 
 module.exports = (db) => {
   // get new order
@@ -21,6 +22,7 @@ module.exports = (db) => {
 
   // confirm new order
   router.post('/new', (req, res) => {
+    const orderId = req.body.order_id;
     db.placeOrder(orderId)
       .then(order => res.json(order))
       .catch(err => console.log(err.message));
@@ -38,6 +40,7 @@ module.exports = (db) => {
 
   // the order is ready
   router.post('/orders', (req, res) => {
+    const orderId = req.body.order_id;
     db.orderIsReady(orderId)
       .then(order => res.json(order))
       .catch(err => console.log(err.message));
@@ -52,6 +55,7 @@ module.exports = (db) => {
 
   // the order is picked up
   router.post('/ready', (req, res) => {
+    const orderId = req.body.order_id;
     db.pickedUp(orderId)
       .then(order => res.json(order))
       .catch(err => console.log(err.message));
@@ -69,13 +73,15 @@ module.exports = (db) => {
 
   // add new food
   router.post('/menu', (req, res) => {
-    db.addNewFood(food_info)
+    const foodInfo = req.body.food_info;
+    db.addNewFood(foodInfo)
       .then(foods => res.json(foods))
       .catch(err => console.log(err.message));
   });
 
   // change food status (unavailable / available)
   router.post('/menu', (req, res) => {
+    const foodId = req.body.food_id;
     db.soldOut(foodId)
       .then(foods => res.json(foods))
       .catch(err => console.log(err.message));
@@ -83,6 +89,7 @@ module.exports = (db) => {
 
   // delete food
   router.post('/menu/delete', (req, res) => {
+    const foodId = req.body.food_id;
     db.deleteFood(foodId)
       .then(foods => res.json(foods))
       .catch(err => console.log(err.message));
@@ -90,7 +97,8 @@ module.exports = (db) => {
 
   // edit food
   router.post('/menu/edit', (req, res) => {
-    db.editFood(eidit_food, foodId)
+    const editFood = req.body;
+    db.editFood(editFood)
       .then(foods => res.json(foods))
       .catch(err => err.message);
   });
