@@ -1,0 +1,40 @@
+.wrap_dish_area{
+  display: flex;
+  justify-content: center;
+}
+
+.dish_area {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  max-width: 700px;
+}
+
+h2 {
+  display: flex;
+  justify-content: center;
+  margin-top: 3em;
+  margin-bottom: 2em;
+}
+
+.foods {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-flow: wrap;
+  /* justify-content: center; */
+  margin-bottom: 5em;
+}
+
+.dish{
+  display: flex;
+  flex-direction: row;
+  justify-self: center;
+  height: 20em;
+  width: 20em;
+  outline: solid;
+  outline-width: 5px;
+  margin: 0.5em;
+
+
+}

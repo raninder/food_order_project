@@ -1,0 +1,44 @@
+.order_area{
+  display: flex;
+  flex-direction: row;
+  /* width: 90%; */
+  justify-content: space-around;
+  align-content: center;
+}
+
+  .order_list  {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+    #order_area_title {
+      align-self: flex-start;
+      font-weight: bold;
+      font-family: 'Courier New', Courier, monospace;
+      margin-left: 1em;
+      margin-top: 3em;
+      margin-bottom: 1em;
+    }
+    .chosen_items {
+      display: flex;
+      flex-direction: row;
+    }
+
+        .food_picked {
+          height: 50px;
+          width: 50px;
+          background-color: #555;
+          margin-right: 0.25em;
+          margin-left: 1em;;
+    
+        }
+  
+  .order_icon {
+    display: flex;
+    align-self: flex-end;
+    font-size: 3em;
+  }
+  .order_icon:hover {
+    color: green;
+  }
