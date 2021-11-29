@@ -40,24 +40,16 @@ const getOrderStatus = (userId) => {
 exports.getOrderStatus = getOrderStatus;
 // user places an order
 const addOrder = (order, userId) => {
-  // if the order data is in the array
+  // needs to get data from front-end
   // order =
-  // [ { food_id : 1, quantity: 2, price: 10},
-  //   { food_id : 3, quantity: 5, price: 90},
-  //   { food_id : 4, quantity: 2, price: 50} ];
-  // if the order data is in the object
-  // order =
-  // {  1 : { quantity: 2, price: 10},
-  //   3 : { quantity: 5, price: 90},
-  //   4 : { quantity: 2, price: 50} };
+  // {  { food_name or foodId : name1 or 1, quantity: 2, price: 10},
+  //    { food_name or foodId : name3 or 3, quantity: 5, price: 90},
+  //    { food_name or foodId : name4 or 4, quantity: 2, price: 50} };
 
-  // let totalPrice = 0;
-  // // if it's arr
-  // order.forEach(order => totalPrice += order.price);
-  // // if it's obj
-  // for (const or in order) {
-  //   totalPrice += order[or].price;
-  // }
+  let totalPrice = 0;
+  for (const food in order) {
+    totalPrice += order[food].price;
+  }
 
   return db
     .query(`
@@ -67,12 +59,12 @@ const addOrder = (order, userId) => {
     `, [userId, totalPrice])
     .then((res) => {
       const orderId = res.rows[0].id;
-      for (const id in order) {
+      for (const food in order) {
         db.query(`
         INSERT INTO order_details ( order_id, food_id, quantity )
         VALUES ($1, $2, $3)
         RETURNING *;
-        `, [orderId, id, order[id].quantity])
+        `, [orderId, order[food].foodId, order[food].quantity])
           .then(res => res.rows);
       }
     });
