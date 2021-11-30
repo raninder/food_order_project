@@ -1,5 +1,5 @@
 const twilio = require('twilio');
-const  { accountSid, authToken } = require('../lib/sms');
+const  { accountSid, authToken } = require('./lib/sms');
 console.log("twilio:" , accountSid, authToken);
 const client = new twilio(accountSid, authToken);
 
