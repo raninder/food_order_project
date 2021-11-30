@@ -7,15 +7,15 @@
 
 const express = require('express');
 const router = express.Router();
-const sms = require('../server/sms');
+const sms = require('../sms');
 
 module.exports = (db) => {
   // get new order
   router.get('/new', (req, res) => {
     db.getNewOrder()
       .then(order => {
-        if (!order) res.send(null);
-        res.json(order);
+        if (!order) return res.send("new order list is empty");
+        return res.json(order);
       })
       .catch(err => console.log(err.message));
   });
@@ -24,7 +24,11 @@ module.exports = (db) => {
   router.post('/new', (req, res) => {
     const orderId = req.body.order_id;
     db.placeOrder(orderId)
-      .then(order => res.json(order))
+      .then(order => {
+        // const time = req.body.estimated_time;
+        // sms.confirmedOrder(time);
+        res.json(order);
+      })
       .catch(err => console.log(err.message));
   });
 
@@ -42,7 +46,10 @@ module.exports = (db) => {
   router.post('/orders', (req, res) => {
     const orderId = req.body.order_id;
     db.orderIsReady(orderId)
-      .then(order => res.json(order))
+      .then(order => {
+        // sms.readyToPickUp();
+        res.json(order);
+      })
       .catch(err => console.log(err.message));
   });
 
@@ -104,26 +111,10 @@ module.exports = (db) => {
   });
 
   // get order histories
-  router.get('/histroy', (req, res) => {
+  router.get('/history', (req, res) => {
     db.getOrderHistories()
       .then(history => res.json(history))
       .catch(err => err.message);
   });
   return router;
 };
-
-
-// router.get("/", (req, res) => {
-//   let query = `SELECT * FROM widgets`;
-//   console.log(query);
-//   db.query(query)
-//     .then(data => {
-//       const widgets = data.rows;
-//       res.json({ widgets });
-//     })
-//     .catch(err => {
-//       res
-//         .status(500)
-//         .json({ error: err.message });
-//     });
-// });
