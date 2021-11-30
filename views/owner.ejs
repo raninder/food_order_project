@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Home Page</title>
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js" integrity="sha512-SVDh1zH5N9ChofSlNAK43lcNS7lWze6DTVx1JCXH1Tmno+0/1jMpdbR8YDgDUfcUrPp1xyE53G42GFrcM0CMVg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+  <script type="text/javascript" src="/scripts/confirm_order.js"></script>  -->
+
+
+</head>
+
+<body>
+  <nav>
+    Food Court
+    </span>
+    <span class="nav-center"> <button type="button">Edit Menu</button>
+      <button type="button">Order History</button>
+    </span>
+  </nav>
+  <section class="header"> 
+
+    <div id="one">
+      <h3>New Orders</h3>
+      <section class="order-container">
+
+        <article class="art-order">
+
+          <table id="showData"></table>
+          <span> order-id</span>
+          <span > user_id</span>
+          <span> total_price</span>
+          <span > created_at</span>
+          <span > confirmed_at</span>
+          <span > ready_at</span>
+          <span > picked_up_at</span>
+          
+        </article>
+        <form id="form1" >
+          <button type="submit" id="submit">confirmed</button>
+        </form>
+
+      </section>
+
+    </div>
+
+    <div id="two">
+      <h3>Orders Confirmed </h3>
+      <button type="button">Ready</button>
+    </div>
+    <div id="three">
+      <h3>Orders Ready</h3>
+      <button type="button">Picked-up</button>
+
+    </div>
+  </section>
+
+
+</body>
+
+</html>
