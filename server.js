@@ -9,7 +9,7 @@ const app = express();
 const morgan = require("morgan");
 
 // PG database client/connection setup
-const db = require('./server/database');
+const db = require('./database');
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.

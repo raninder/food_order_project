@@ -1,6 +1,6 @@
 const { urlencoded } = require("express");
 const { Pool } = require("pg");
-const dbParams = require("../lib/db.js");
+const dbParams = require("./lib/db.js");
 const db = new Pool(dbParams);
 db.connect(() =>  console.log(`Connected to database`));
 
@@ -79,10 +79,10 @@ const getNewOrder = () => {
     .query(`
     SELECT *
     FROM orders
-    AND picked_up_at IS NULL;
+    WHERE picked_up_at IS NULL
     AND ready_at IS NULL
     AND confirmed_at IS NULL
-    WHERE created_at IS NOT NULL
+    AND created_at IS NOT NULL;
     `)
     .then(res => res.rows);
 };
@@ -105,11 +105,12 @@ const getPlacedOrder = () => {
     .query(`
     SELECT *
     FROM orders
-    AND picked_up_at IS NULL;
+    WHERE picked_up_at IS NULL
     AND ready_at IS NULL
     AND confirmed_at IS NOT NULL
-    WHERE created_at IS NOT NULL
-    `);
+    AND created_at IS NOT NULL;
+    `)
+    .then(res => res.rows);
 };
 exports.getPlacedOrder = getPlacedOrder;
 
@@ -132,10 +133,11 @@ const getFoodsAreReady = () => {
     SELECT *
     FROM orders
     WHERE picked_up_at IS NULL
-    AND ready_at IS NOT NULL;
+    AND ready_at IS NOT NULL
     AND confirmed_at IS NOT NULL
-    AND created_at IS NOT NULL
-    `);
+    AND created_at IS NOT NULL;
+    `)
+    .then(res => res.rows);
 };
 exports.getFoodsAreReady = getFoodsAreReady;
 // order status - you has picked up your food
@@ -190,7 +192,7 @@ const editFood = (edit) => {
   const queryParams = [name, in_stock, picture_url, estimated_time, price, food_id];
   const queryString = `
   UPDATE foods
-  SET name = $1, in_stock = $2, picture_url = $3, estimated_time = $4, price = $5
+  SET name = $1, in_stock = $2, photo = $3, estimated_time = $4, price = $5
   WHERE id = $6
   RETURNING *;`;
 
@@ -201,9 +203,10 @@ exports.editFood = editFood;
 const getOrderHistories = (limit = 20) => {
   return db
     .query(`
-    SELECT orders.*, order_details.*
+    SELECT order_details.*, orders.*
     FROM orders
-    LEFT JOIN orders ON orders.id = order_id
+    LEFT JOIN order_details ON orders.id = order_id
+    WHERE orders.id = order_id
     ORDER BY orders.id DESC
     LIMIT $1;
     `, [limit])
