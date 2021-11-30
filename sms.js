@@ -15,3 +15,24 @@ const sendNewOrder = () => {
 };
 exports.sendNewOrder = sendNewOrder;
 
+const confirmedOrder = () => {
+  client.messages
+    .create({
+      body: 'Your order is confirmed, Estimated time is 20 mins',
+      from: '+1',
+      to: '+1'
+    })
+    .then(message => console.log(message.sid));
+};
+exports.confirmedOrder = confirmedOrder;
+
+const readyToPickUp = () => {
+  client.messages
+    .create({
+      body: 'Your order is ready to pick up',
+      from: '+1',
+      to: '+1'
+    })
+    .then(message => console.log(message.sid));
+};
+exports.readyToPickUp = readyToPickUp;
