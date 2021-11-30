@@ -10,6 +10,11 @@ const router = express.Router();
 const sms = require('../sms');
 
 module.exports = (db) => {
+
+  router.get('/', (req, res) => {
+    res.render("owner");
+ })
+
   // get new order
   router.get('/new', (req, res) => {
     db.getNewOrder()
@@ -22,13 +27,18 @@ module.exports = (db) => {
 
   // confirm new order
   router.post('/new', (req, res) => {
+
     const orderId = req.body.order_id;
+    if (!req.body) {
+      res.status(400).json({ error: 'invalid request: no data in POST body'});
+      return;
+    }
+    console.log("req.body owner.js", req.body);
+    console.log("order id:",orderId);
     db.placeOrder(orderId)
       .then(order => {
-        // const time = req.body.estimated_time;
-        // sms.confirmedOrder(time);
-        res.json(order);
-      })
+        console.log("res.json", res.json);
+        return res.json(order)})
       .catch(err => console.log(err.message));
   });
 
