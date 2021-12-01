@@ -23,6 +23,7 @@ module.exports = (db) => {
 
   // get all the menu from foods table
   router.get('/menu/foods', (req, res) => {
+    console.log("getting the foods:");
     db.getAllFoods()
       .then(data => res.json(data))
       .catch(err => {
