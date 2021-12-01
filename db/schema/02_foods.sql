@@ -5,6 +5,5 @@ CREATE TABLE foods (
   name VARCHAR(255) PRIMARY KEY NOT NULL,
   in_stock BOOLEAN DEFAULT TRUE,
   photo VARCHAR(255) NOT NULL,
-  estimated_time INTEGER NOT NULL,
   price INTEGER NOT NULL
 );

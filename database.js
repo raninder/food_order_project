@@ -79,24 +79,28 @@ const getNewOrder = () => {
     .query(`
     SELECT *
     FROM orders
-    WHERE picked_up_at IS NULL
-    AND ready_at IS NULL
-    AND confirmed_at IS NULL
-    AND created_at IS NOT NULL;
     `)
     .then(res => res.rows);
 };
+// WHERE picked_up_at IS NULL
+//     AND ready_at IS NULL
+//     AND confirmed_at IS NULL
+//     AND created_at IS NOT NULL;
 exports.getNewOrder = getNewOrder;
 // confirm the order
-const placeOrder = (orderId) => {
+const placeOrder = (id, time) => {
+  console.log("orderID in db.js",id );
   return db
     .query(`
     UPDATE orders
-    SET confirmed_at = Now()
-    WHERE id = $1
+    SET (confirmed_at, estimated_time) = (now(), $1)
+    WHERE id = $2
     RETURNING *;
-    `, [orderId])
-    .then(res => res.rows);
+    `, [time, id])
+    .then(res => {
+      console.log("update res.rows",res.rows);
+      return res.rows;
+    })
 };
 exports.placeOrder = placeOrder;
 // order status - restaurant is preparing your food.
@@ -115,14 +119,14 @@ const getPlacedOrder = () => {
 exports.getPlacedOrder = getPlacedOrder;
 
 // order status - your order is ready to pick up
-const orderIsReady = (orderId) => {
+const orderIsReady = (id) => {
   return db
     .query(`
     UPDATE orders
     SET ready_at = Now()
     WHERE id = $1
     RETURNING *;
-    `, [orderId])
+    `, [id])
     .then(res => res.rows);
 };
 exports.orderIsReady = orderIsReady;
