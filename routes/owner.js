@@ -35,7 +35,8 @@ module.exports = (db) => {
     }
     console.log("req.body owner.js", req.body);
     console.log("order id:",orderId);
-    db.placeOrder(orderId)
+    const time = req.body.time;
+    db.placeOrder(orderId, time)
       .then(order => {
         console.log("res.json", res.json);
         return res.json(order)})
