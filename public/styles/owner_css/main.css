@@ -44,11 +44,14 @@ nav {
   align-items:flex-start;
   justify-content: flex-start;
   background-color: burlywood;
+  color: black;
   margin-left: 40px;
   margin-right: 40px;
   border: 1px solid black;
-  width: 80%
+  width: 80%;
 }
+
+  
 
 #one{
   display: flex;
@@ -59,6 +62,10 @@ nav {
   padding: 20px;
   height: 606px;
 }
+#one input[type=text] {
+  background-color: lightblue;
+  border:0px;
+}
 #two{
   display: flex;
   flex-direction: column;
@@ -67,6 +74,10 @@ nav {
   width: 33.5%;
   padding: 20px;
   height: 606px;
+}
+#two input[type=text] {
+  background-color: rgb(56, 133, 158);
+  border:0px;
 }
 #three{
   display: flex;
@@ -77,10 +88,12 @@ nav {
   padding: 20px;
   height: 606px;
 }
-.header button{
-  margin-top: auto;
-} 
-#one input[type=text] {
+
+#three input[type=text] {
   background-color: lightblue;
   border:0px;
 }
+
+.header button{
+  margin-top: auto;
+} 
