@@ -16,4 +16,13 @@ div.history {
 .order_history {
   display: flex;
   justify-content: center;
+  border-bottom: 3px solid black;
+}
+
+.order {
+  border-bottom: 2px solid black;
+}
+
+ol {
+  border: 1px solid black;
 }
