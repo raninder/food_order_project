@@ -1,22 +1,35 @@
 
-const createOrderElement = function(orderData) {
+const createOrderElement = function (orderData) {
 
 	//time when tweet was created (e.g.10 days ago)
-	const $time = timeago.format(orderData.created_at);
+	const $time1 = timeago.format(orderData.created_at);
+	const $time2 = timeago.format(orderData.confirmed_at);
+	const $time3 = timeago.format(orderData.ready_at);
 
-	//escaping text input for any script tag in tweet
-	//const safeHTML = `${escape(tweetData.content.text)}`;
-	
+
 	//render orders data
 	
-				const $orderItem = $(`<article class="art-order">
-				<form class="confirmation-form" id="form2" method= "POST" action="/new" >
-				
+	let formAction; 
+	if (orderData.ready_at !== null) {
+		formAction = "/owner";
+	}
+	else if(orderData.confirmed_at !== null ){
+		formAction = "/owner/orders";
+	}
+	else{
+		formAction = "/owner/new";
+	}
+
+	const $orderItem = $(`<article class="art-order">
+				<div class="ets-time"></div>
+				<form class="confirmation-form" id="form2" method= "POST" action="${formAction}" >
+					
 								Order id:	<input type ="text" name="order_id" size="2" value= ${orderData.id} /> <br>
-								User id:	<input type ="text" name="user_id" size="2" value= ${orderData.user_id} />	<br>
-								Time:	 ${$time} 
+								User id:	<input type ="text" name="user_id" size="2" value= ${orderData.user_id} /> 
+							<p class="est-time">	Estimated time: <input type ="text" name="time" size="2" value= ${orderData.estimated_time} /></p>
+								Time:	 ${$time1} 
 							
-									<button type="submit" id="confirm">confirmed</button>
+									<button type="submit" id="confirm">Submit</button>
 									<hr>
 									</form>
 					</article>`);
@@ -24,69 +37,79 @@ const createOrderElement = function(orderData) {
 	return $orderItem;
 }
 
-const renderOrderData = function(orders) {
-console.log("in jquery",orders);
-	$('.order-container').empty();
 
+const renderOrderData = function (orders) {
+	console.log("in jquery", orders);
+	$('.order-container1').empty();
+	$('.order-container2').empty();
+	$('.order-container3').empty();
 	for (let order of orders) {
+		if (order.ready_at !== null) {
 			let $orderData = createOrderElement(order);
-			$('.order-container').append($orderData);
+			$('.order-container3').append($orderData);
+			// $(".est-time").remove();
+		}
+		else if(order.confirmed_at !== null ){
+			let $orderData = createOrderElement(order);
+			$('.order-container2').append($orderData);
+		}
+		else {
+			let $orderData = createOrderElement(order);
+			$('.order-container1').append($orderData);
+		}
 	}
-
 }
 
 //load orders from specified url
 
-const loadOrders = function() {
+const loadOrders = function () {
 	const url = "/owner/new";
 	$.ajax({
-					url: url,
-					method: 'GET',
+		url: url,
+		method: 'GET',
 
-			})
-			.then((results) => {
-					renderOrderData(results);
-			})
+	})
+		.then((results) => {
+			renderOrderData(results);
+		})
 }
 
-const confirmOrders = function(orderData) {
-	const url = "/owner/new";
-	console.log("order----data",orderData);
+const confirmOrders = function (orderData) {
+	const str= $(orderData).serialize();
+	alert(str);
+	let formAction = orderData.action; 
+
+	console.log("formaction",formAction);
+	
+	console.log("order----data", orderData);
 	$.ajax({
-					url: url,
-					method: 'POST',
-					data: orderData
-			})
-			.then((results) => {
-					//console.log("order----id",results)
-				loadOrders(results);
-			})
+		url: formAction,
+		method: 'POST',
+		data: str
+	})
+		.then((results) =>loadOrders(results))
+
+
 }
 
-// //function for escaping any malicious content from tweet input like <script>alert("hi");</script>
-
-// const escape = function(str) {
-// 	let div = document.createElement("div");
-// 	div.appendChild(document.createTextNode(str));
-// 	return div.innerHTML;
-// };
 
 //function to execute after DOM is ready
 
-$(document).ready(function() {
-	
+$(document).ready(function () {
+
 	loadOrders();
 
 	//eventlistener for submit(confirm) button
-	$(document).on('submit',"#form2",function(event) {
+	$(document).on('submit', "#form2", function (event) {
 
-			// prevent from submitting a form
-			event.preventDefault();
-			console.log("jquery");
-			const str = $(this).serialize();
+		// prevent from submitting a form
+		event.preventDefault();
+		console.log("jquery");
+		const str = $(this).serialize();
 		//	const orderid = $('#orderdataid').val();
-			alert(str);
-			//post confirmed_at to now()
-			confirmOrders(str);
+		console.log("str data",str);
+		//post confirmed_at to now()
+		confirmOrders(this);
 	});
 });
+
