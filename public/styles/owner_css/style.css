@@ -1,0 +1,138 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  color: #545149;
+  background-color: #f4f1ec;
+  font-size: 24px;
+  font-family: "Source Sans Pro", sans-serif;
+  /* background-color: green; */
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5em;
+  height: 120px;
+  background-color: #4056A1;
+  color: #ffffff;
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+  top: 0;
+}
+
+.nav-center {
+  align-content: center;
+}
+
+.header {
+  display: inline-flex;
+  flex-direction: row;
+  margin-top: 140px;
+  align-items:flex-start;
+  justify-content: flex-start;
+  color: black;
+  margin-left: 40px;
+  margin-right: 40px;
+  width: 80%;
+  height: auto;
+}
+
+  
+/* three order containers */
+#one{
+  display: flex;
+  flex-direction: column;
+  background-color:lightblue;
+  border: 1px solid black;
+  width: 33%; 
+  padding: 20px;
+}
+
+#two{
+  display: flex;
+  flex-direction: column;
+  background-color:rgb(56, 133, 158);
+  border: 1px solid black;
+  width: 33.5%;
+  padding: 20px;
+  /* height: 606px; */
+}
+
+#three{
+  display: flex;
+  flex-direction: column;
+  background-color:lightblue;
+  border: 1px solid black;
+  width: 33.5%;
+  padding: 20px;
+}
+
+
+/* forms in three order containers */
+#one input[type=text] {
+  background-color: lightblue;
+  border:0px;
+}
+#two input[type=text] {
+  background-color: rgb(56, 133, 158);
+  border:0px;
+}
+#three input[type=text] {
+  background-color: lightblue;
+  border:0px;
+}
+
+
+.header button{
+  margin-top: auto;
+}
+
+.food-container{
+  margin-top:130px;
+  background-color:lightblue;
+  border: 1px solid black;
+  width: 40%;
+  /* height:auto; */
+}
+
+ #estime{
+  background-color: white;
+  border:1px;
+ }
+
+ table, th, td {
+  /* border: 1px solid black;   */
+
+}
+
+table {
+  border-spacing: 10px; 
+  width: 100%; 
+  table-layout: fixed;
+}
+
+ td,th {
+  padding-top: 5px;
+  padding-right: 20px; 
+  text-align: left;
+  width: 200px ;
+  
+  
+}
+.foods-table #fid{
+  width: 50px;
+ 
+}
