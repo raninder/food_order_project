@@ -10,11 +10,21 @@ const router = express.Router();
 const sms = require('../sms');
 
 module.exports = (db) => {
-// get user's information from users table
-  router.get('/:id', (req, res) => {
+
+  router.get("/", (req, res) => {
+    res.render('customer_side');
+  });
+
+  router.get("/:id", (req, res) => {
+    res.render('customer_side');
+  });
+
+
+  // get user's information from users table
+  router.get('/:id/info', (req, res) => {
     const userId = req.params.id;
     db.getUserById(userId)
-      .then(data => res.json({user : data}))
+      .then(data => res.json(data))
       .catch(err => {
         console.log(err.message);
         res.send(err);
@@ -23,6 +33,7 @@ module.exports = (db) => {
 
   // get all the menu from foods table
   router.get('/menu/foods', (req, res) => {
+    console.log("getting the foods:");
     db.getAllFoods()
       .then(data => res.json(data))
       .catch(err => {
@@ -49,7 +60,7 @@ module.exports = (db) => {
   // get order status by user id
   router.get('/:id/order/status', (req, res) => {
     const userId = req.params.id;
-    db.getOrderStatus(userId)
+    db.getUserHistory(userId)
       .then(data => res.json(data))
       .catch(err => {
         console.log(err.message);

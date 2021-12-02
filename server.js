@@ -46,8 +46,11 @@ app.use("/owner", ownerRoutes(db));
 // Separate them into separate routes files (see above).
 
 app.get("/", (req, res) => {
+  console.log("this is the home route");
   res.render("customer_side");
 });
+
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

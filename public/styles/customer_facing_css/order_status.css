@@ -1,0 +1,37 @@
+.order_status {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  text-align: left;
+  margin-left: 5%;
+  margin-right: 5%;
+  background-color: blanchedalmond;
+  padding-left: 100px;
+}
+
+.order_history {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  text-align: left;
+  margin-left: 5%;
+  margin-right: 5%;
+  background-color: blanchedalmond;
+  padding-left: 100px;
+}
+
+
+.status {
+  padding-left: 50px;
+  font-size:xx-large;
+  /* width: auto; */
+}
+
+ol {
+  font-size: xx-large;
+}
+li {
+  font-size: large;
+}

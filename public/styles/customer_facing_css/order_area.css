@@ -6,6 +6,39 @@
   align-content: center;
 }
 
+.checkout{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 3em;
+}
+
+    .order_icon {
+      display: flex;
+      align-self: flex-end;
+    }
+
+    .fas {
+      font-size: 1em;
+      }
+  
+
+    .fas:hover {
+    color: green;
+    }
+
+    span{
+      font-size: 15px;
+    }
+  .checkout_price{
+    font-family: "impact" ;
+  }  
+
+  .checkout_price{
+      font-size: 1em;
+      font-family: arial bold;
+  }
+
   .order_list  {
     display: flex;
     flex-direction: column;
@@ -20,25 +53,59 @@
       margin-top: 3em;
       margin-bottom: 1em;
     }
-    .chosen_items {
+    .order_area_items {
       display: flex;
       flex-direction: row;
+      border: dashed;
     }
 
-        .food_picked {
-          height: 50px;
-          width: 50px;
-          background-color: #555;
+        .order_item {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          height: 120px;
+          width: 120px;
+          background-color: transparent;
           margin-right: 0.25em;
-          margin-left: 1em;;
+          margin-left: 1em;
+
     
         }
-  
-  .order_icon {
-    display: flex;
-    align-self: flex-end;
-    font-size: 3em;
-  }
-  .order_icon:hover {
-    color: green;
-  }
+
+                .order_food_image {
+                  display: flex;
+                  align-self: center;
+                  height: 50px;
+                  width: 50px;
+        
+                }
+
+                .order_item_name_quantity_price {
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                }
+                
+                .order_item_name {
+                  display: flex;
+                  justify-content: center;
+                  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+                }
+                    .order_item_quantity_price{
+                      display: flex;
+                      flex-direction: row;
+                      justify-content: center;
+                    }
+                    
+                    .order_item_name {
+                          display: flex;
+                          justify-content: center;
+                          font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+                        }
+                        .order_item_name {
+                          display: flex;
+                          justify-content: center;
+                          font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+                        }
+                        
+                        
