@@ -13,7 +13,7 @@ module.exports = (db) => {
 
   router.get('/', (req, res) => {
     res.render("owner");
- })
+  });
 
   // get new order
   router.get('/new', (req, res) => {
@@ -33,12 +33,14 @@ module.exports = (db) => {
       res.status(400).json({ error: 'invalid request: no data in POST body'});
       return;
     }
-    
     const time = req.body.time;
+
     db.placeOrder(orderId, time)
       .then(order => {
-        console.log("res.json", res.json);
-        return res.json(order)})
+        //send message to user - order has confirmed, reminder message
+        // sms.confirmedOrder(time);
+        return res.json(order);
+      })
       .catch(err => console.log(err.message));
   });
 
@@ -57,6 +59,7 @@ module.exports = (db) => {
     const orderId = req.body.order_id;
     db.orderIsReady(orderId)
       .then(order => {
+        // send message to user - ready to pick up
         // sms.readyToPickUp();
         res.json(order);
       })
@@ -107,7 +110,7 @@ module.exports = (db) => {
   // delete food
   router.post('/menu/delete', (req, res) => {
     const foodId = req.body.id;
-    
+
     db.deleteFood(foodId)
       .then(foods => res.json(foods))
       .catch(err => console.log(err.message));
