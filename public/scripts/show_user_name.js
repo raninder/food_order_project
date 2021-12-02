@@ -2,7 +2,7 @@ $(document).ready(() => {
 
   const $renderUserInfo = user => {
     const $userInfo =
-    `<span id="name">Hello ${user.name}</span>`;
+    `<div id="name">Hello ${user.name}</div>`;
 
     $(".user_info").append($userInfo);
   };
