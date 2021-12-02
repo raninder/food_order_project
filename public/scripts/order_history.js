@@ -64,6 +64,8 @@ $(document).ready(function() {
   $("#order_history").click(() => {
     $(".order_history").toggle("slow");
     $('.history').toggle("slow");
+	
     $('.header').toggle("slow");
+		$('.menu').hide();
   });
 });
