@@ -29,14 +29,18 @@ const getUserById = (id) => {
 };
 exports.getUserById = getUserById;
 // get order status by user id
-const getOrderStatus = (userId) => {
+const getOrderStatus = () => {
   return db
     .query(`
-    SELECT *
+    SELECT order_details.*, orders.*, users.name as user_name, users.*, foods.*
     FROM orders
-    WHERE orders.user_id = $1;
-    `, [userId])
-    .then(res => res.rows[0]);
+    LEFT JOIN order_details ON orders.id = order_id
+    JOIN users ON users.id = user_id
+    JOIN foods ON foods.name = food_name
+    WHERE orders.id = order_id
+    ORDER BY order_id DESC, foods.id
+    `)
+    .then(res => res.rows);
 };
 exports.getOrderStatus = getOrderStatus;
 // user places an order
@@ -217,3 +221,20 @@ const getOrderHistories = (limit = 20) => {
     .then(res => res.rows);
 };
 exports.getOrderHistories = getOrderHistories;
+
+const getUserHistory = (userId) => {
+  return db
+    .query(`
+    SELECT order_details.*, orders.*, users.name as user_name, users.*, foods.*
+    FROM orders
+    LEFT JOIN order_details ON orders.id = order_id
+    JOIN users ON users.id = user_id
+    JOIN foods ON foods.name = food_name
+    WHERE orders.id = order_id
+    AND user_id = $1
+    ORDER BY order_id DESC, foods.id
+  `, [userId])
+    .then(res => res.rows);
+};
+exports.getUserHistory = getUserHistory;
+

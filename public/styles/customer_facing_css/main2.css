@@ -7,8 +7,8 @@ nav {
   width: 100%;
   color:#FFFFFF ;
   /* z-index: 100; */
-  
-  
+
+
 }
 
 #page_title {
@@ -49,7 +49,7 @@ nav {
     #menu_button {
       display: flex;
       /* justify-self: center; */
-      margin-right: 10px;
+      margin-left: 10px;
     }
 
 
@@ -57,7 +57,7 @@ nav {
       display: flex;
       /* justify-self: center; */
 
-      margin-left: 10px;
+      margin-right: 10px;
     }
 
 
@@ -74,10 +74,10 @@ nav {
       margin-left: 10px;
     }
 
-    /* #menu {   
-      flex: 0 0 33%;   
-      border: solid red 1px; }  
-      #user_purchase_icons {   
-        border: solid red 1px;   
+    /* #menu {
+      flex: 0 0 33%;
+      border: solid red 1px; }
+      #user_purchase_icons {
+        border: solid red 1px;
         flex: 0 0 33%; } */
 
