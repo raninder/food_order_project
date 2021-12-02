@@ -21,7 +21,7 @@
     .fas {
       font-size: 1em;
       }
-  
+
 
     .fas:hover {
     color: green;
@@ -32,7 +32,7 @@
     }
   .checkout_price{
     font-family: "impact" ;
-  }  
+  }
 
   .checkout_price{
       font-size: 1em;
@@ -69,7 +69,7 @@
           margin-right: 0.25em;
           margin-left: 1em;
 
-    
+
         }
 
                 .order_food_image {
@@ -77,7 +77,7 @@
                   align-self: center;
                   height: 50px;
                   width: 50px;
-        
+
                 }
 
                 .order_item_name_quantity_price {
@@ -85,7 +85,7 @@
                   flex-direction: column;
                   justify-content: center;
                 }
-                
+
                 .order_item_name {
                   display: flex;
                   justify-content: center;
@@ -96,7 +96,7 @@
                       flex-direction: row;
                       justify-content: center;
                     }
-                    
+
                     .order_item_name {
                           display: flex;
                           justify-content: center;
@@ -107,5 +107,25 @@
                           justify-content: center;
                           font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
                         }
-                        
-                        
+
+input {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+  text-align: center;
+  border-color: rgba(255, 255, 255, 0);
+}
+
+.checkout_title {
+  width: 180px;
+  text-align: center;
+}
+.order_item_quantity {
+  width: 50px;
+  margin-left: 10px;
+}
+.order_item_quantity_price {
+  margin-left: 10px;
+}
+
