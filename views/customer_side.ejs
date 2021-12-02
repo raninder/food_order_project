@@ -12,11 +12,17 @@
   <link rel="stylesheet" href="../styles/customer_facing_css/foods.css" type="text/css" />
 
 
-  <link rel="stylesheet" href="../styles/customer_facing_css/layout.css" type="text/css" />  
+  <link rel="stylesheet" href="../styles/customer_facing_css/layout.css" type="text/css" />
+  <link rel="stylesheet" href="../styles/customer_facing_css/order_status.css" type="text/css" />
 
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/customer_side.js"></script>
+  <script type="text/javascript" src="/scripts/show_user_name.js"></script>
+  <script type="text/javascript" src="/scripts/order_status.js"></script>
+  <script type="text/javascript" src="/scripts/user_order_history.js"></script>
+
+
 
 
   <!-- external js -->
@@ -38,28 +44,40 @@
             <i class="fas fa-utensils"></i>
           </div>
 
-          
+
           <div class = "user_purchase_icons">
+<<<<<<< HEAD
             
             <div  id="user_icon"><i class="far fa-user"></i></div>
             <div>Hello, User</div>
             
+=======
+            <div  id="user_icon"><i class="far fa-user"></i>
+            </div>
+            <div class="user_info"></div>
+>>>>>>> d923683b05a917d906a224c04babb0a726efbcf0
           </div>
         </div>
-        
 
-        <div class= "menu_your_order_buttons"> 
-          <div id="menu_button" ><button type="button">Menu</button></div>
-          <div id="your_order_button"><button type="button">Your Order</button></div>
+
+        <div class= "menu_your_order_buttons">
+          <div id="your_order_button">
+            <button class="your_order" type="button">Your Order</button>
+          </div>
+          <div id="order_history_button" >
+            <button class="your_history" type="button">Order History</button></div>
         </div>
-
   </nav>
-  
+</div>
+<!-- order status-->
+  <div class="order_status"></div>
+  <div class="order_history"></div>
+
   <div class="order_area">
 
     <div class= "order_list">
       <div id= "order_area_title">Your Current Order:</div>
-      <div class="order_area_items" >        
+      <div class="order_area_items" >
           <div class= "order_item">
             <img class="order_food_image" src="https://assets.epicurious.com/photos/57c5c6d9cf9e9ad43de2d96e/master/pass/the-ultimate-hamburger.jpg">
 
@@ -116,12 +134,12 @@
 
 
     <!-- Page-specific (main) content here -->
-    <div class="wrap_dish_area">    
+    <div class="wrap_dish_area">
       <div class="dish_area">
         <h2>Available Dishes</h2>
         <main class="foods">
           <!-- <div class="dish_and_price">
-            <div class= "dish">         
+            <div class= "dish">
               <img style ="width :20em; height: 20em;" src="https://www.thecoderpedia.com/wp-content/uploads/2020/06/Programming-Memes.jpg"></img>
             </div>
             <div class="dish_price">$8.99</div>
