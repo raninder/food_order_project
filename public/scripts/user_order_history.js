@@ -6,7 +6,7 @@ $(document).ready(() => {
     const {total_price, picked_up_at, order_id} = order;
     let $completed = '';
     // if order completed, then show the time
-    (picked_up_at) ? $completed = picked_up_at : $completed = 'in progress';
+    (picked_up_at) ? $completed = timeago.format(`${picked_up_at}`) : $completed = 'in progress';
 
     let $status =
     `<h3>Your Order History</h3>

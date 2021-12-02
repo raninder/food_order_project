@@ -6,7 +6,7 @@ $(document).ready(function() {
     const { order_id, user_id, user_name, total_price, picked_up_at } =  orders;
     let $completed = '';
     // chekcing order status
-    (picked_up_at) ? $completed = 'completed' : $completed = 'in progress';
+    (picked_up_at) ? $completed = timeago.format(`${picked_up_at}`) : $completed = 'in progress';
 
     const $orderDetail = `
     <div class="order">

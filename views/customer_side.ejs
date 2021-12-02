@@ -15,12 +15,16 @@
   <link rel="stylesheet" href="../styles/customer_facing_css/layout.css" type="text/css" />
   <link rel="stylesheet" href="../styles/customer_facing_css/order_status.css" type="text/css" />
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js"
+    integrity="sha512-SVDh1zH5N9ChofSlNAK43lcNS7lWze6DTVx1JCXH1Tmno+0/1jMpdbR8YDgDUfcUrPp1xyE53G42GFrcM0CMVg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/customer_side.js"></script>
   <script type="text/javascript" src="/scripts/show_user_name.js"></script>
   <script type="text/javascript" src="/scripts/order_status.js"></script>
   <script type="text/javascript" src="/scripts/user_order_history.js"></script>
+
 
 
 
@@ -46,13 +50,6 @@
 
 
           <div class = "user_purchase_icons">
-<<<<<<< HEAD
-=======
-
-            <div  id="user_icon"><i class="far fa-user"></i></div>
-            <div>Hello, User</div>
-
->>>>>>> master
             <div  id="user_icon"><i class="far fa-user"></i>
             </div>
             <div class="user_info"></div>
@@ -78,14 +75,18 @@
     <!-- order list -->
     <div class= "order_list">
       <div id= "order_area_title">Your Current Order:</div>
+      <form method="POST" action="/:id/order">
       <div class="order_area_items" ></div>
     </div>
     <div class="order_icon">
       <div class="checkout">
-        <div class="checkout_title">Total</div>
-        <div class="checkout_price">$28.45</div>
+        <div class="checkout_title">
+          <span style="font-size: xx-large;"><b>Total</b></span><br>
+        $<output type="number" name="total_price" class="checkout_price">0</output>
+      </div>
         <i class="fas fa-money-check-alt"></i>
         <span>Click To Pay</span>
+      </form>
       </div>
     </div>
 
