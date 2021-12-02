@@ -158,7 +158,6 @@ const pickedUp = (orderId) => {
 exports.pickedUp = pickedUp;
 
 const addNewFood = (food) => {
-  console.log("food", food);
   const { name, photo, price } = food;
   const queryParams = [name, photo, price];
   const queryString = `
