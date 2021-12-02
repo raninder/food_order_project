@@ -1,16 +1,25 @@
+// const add_to_cart = function(photo) {
+//   console.log("item:", photo);
+//   const selectedimage = `<img class="dish_img" src= ${photo}/>`
+//   $(".chosen_items").append(selectedimage);
+// }
+
+
+
 $(document).ready(function() {
 
   // this creates the food picture and price
 
   const create_picture_element = (item) =>  {
-    let html = []
-    html.push(
+    const {id, photo, price} = item;
+    console.log("this is id and photo:" , id, photo);
+    let html = 
     `<div class="dish_and_price">
-      <div class= "dish">         
-        <img style ="width :20em; height: 20em;" src="${item.photo}"></img>
+      <div class= "dish dish_${id}">         
+        <img class="dish_img" src="${photo}"/>
       </div>
-        <div class="dish_price">${item.price}</div>
-    </div>`);
+        <div class="dish_price">${price}</div>
+    </div>`;
     return html
   }
 
@@ -27,7 +36,6 @@ $(document).ready(function() {
       dataType: "json"
     })
     .then((data) => {
-      console.log("this is received from the menu/foods:" , data);
       render_picture(data);
 
 
@@ -35,14 +43,20 @@ $(document).ready(function() {
   };
 
 let shopping_cart = [];
-console.log("12345");
 
-  $(".foods").on("click", ".dish_and_price",  function(event) {
+  // $(".foods").on("click", ".dish_and_price",  function() {
     // event.preventDefault();
-    console.log("123");
-    console.log($(this).find(".dish_price").html())
-  })
+    // console.log($(this))
 
+
+    // $(".food_picked").append($(".dish_img"))
+    // console.log($(this).find(".dish_price").html())
+  // })
+
+  // $("div")
+  // $("#id")
+  // $(".className")
+  // $(this)
 
   $load_menu();
 

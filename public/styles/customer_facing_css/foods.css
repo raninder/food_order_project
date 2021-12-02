@@ -40,6 +40,11 @@ h2 {
   outline-width: 5px;
 }
 
+.dish_img {
+  height: 20em;
+  width: 20em;
+}
+
 .dish_price {
   font-size: large;
   font-weight: bold;
