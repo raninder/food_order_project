@@ -11,7 +11,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js" integrity="sha512-SVDh1zH5N9ChofSlNAK43lcNS7lWze6DTVx1JCXH1Tmno+0/1jMpdbR8YDgDUfcUrPp1xyE53G42GFrcM0CMVg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
-  <script type="text/javascript" src="/scripts/confirm_order.js"></script>  -->
+  <script type="text/javascript" src="/scripts/confirm_order.js"></script>
+  <script type="text/javascript" src="/scripts/order_history.js"></script>
+  <script type="text/javascript" src="/scripts/edit_menu.js"></script>
 
 
 </head>
@@ -20,11 +22,19 @@
   <nav>
     Food Court
     </span>
-    <span class="nav-center"> <button type="button">Edit Menu</button>
-      <button type="button">Order History</button>
+    <span class="nav-center"> <button id= "edit_menu" type="button">Edit Menu</button></span>
+      <button id="order_history" type="button">Order History</button>
     </span>
   </nav>
-  <section class="header"> 
+  <!--order history-->
+  <div class="history">
+    <h3 class="order_history"> Order History </h3>
+  </div>
+  <!--Edit Menu-->
+  <div class="menu">
+    <h3 class="edit_menu"> Edit Menu </h3>
+  </div>
+  <section class="header">
 
     <div id="one">
       <h3>New Orders</h3>
@@ -46,7 +56,9 @@
         </section>
     </div>
   </section>
-
+<section class = "food-container">
+  
+</section>
 
 </body>
 

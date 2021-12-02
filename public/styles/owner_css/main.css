@@ -96,4 +96,22 @@ nav {
 
 .header button{
   margin-top: auto;
-} 
+}
+
+.food-container{
+  margin-top:130px;
+  background-color:lightblue;
+  border: 1px solid black;
+  width: 50%;
+  /* height:auto; */
+}
+
+/* table {
+  border-spacing: 20px;
+} */
+/* th, td {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+} */
