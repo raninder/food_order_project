@@ -91,23 +91,25 @@ module.exports = (db) => {
 
   // add new food
   router.post('/menu', (req, res) => {
-    const foodInfo = req.body.food_info;
-    db.addNewFood(foodInfo)
+    //const foodInfo = req.body.food_info;
+    //console.log(req.body);
+    db.addNewFood(req.body)
       .then(foods => res.json(foods))
       .catch(err => console.log(err.message));
   });
 
   // change food status (unavailable / available)
-  router.post('/menu', (req, res) => {
-    const foodId = req.body.food_id;
-    db.soldOut(foodId)
-      .then(foods => res.json(foods))
-      .catch(err => console.log(err.message));
-  });
+  // router.post('/menu', (req, res) => {
+  //   const foodId = req.body.food_id;
+  //   db.soldOut(foodId)
+  //     .then(foods => res.json(foods))
+  //     .catch(err => console.log(err.message));
+  // });
 
   // delete food
   router.post('/menu/delete', (req, res) => {
-    const foodId = req.body.food_id;
+    const foodId = req.body.id;
+    console.log("food_id owner", req.body);
     db.deleteFood(foodId)
       .then(foods => res.json(foods))
       .catch(err => console.log(err.message));
