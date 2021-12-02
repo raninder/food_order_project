@@ -6,6 +6,39 @@
   align-content: center;
 }
 
+.checkout{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 3em;
+}
+
+    .order_icon {
+      display: flex;
+      align-self: flex-end;
+    }
+
+    .fas {
+      font-size: 1em;
+      }
+  
+
+    .fas:hover {
+    color: green;
+    }
+
+    span{
+      font-size: 15px;
+    }
+  .checkout_price{
+    font-family: "impact" ;
+  }  
+
+  .checkout_price{
+      font-size: 1em;
+      font-family: arial bold;
+  }
+
   .order_list  {
     display: flex;
     flex-direction: column;
@@ -63,8 +96,8 @@
                       flex-direction: row;
                       justify-content: center;
                     }
-
-                        .order_item_name {
+                    
+                    .order_item_name {
                           display: flex;
                           justify-content: center;
                           font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -74,14 +107,5 @@
                           justify-content: center;
                           font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
                         }
-
-
-  
-  .order_icon {
-    display: flex;
-    align-self: flex-end;
-    font-size: 3em;
-  }
-  .order_icon:hover {
-    color: green;
-  }
+                        
+                        
