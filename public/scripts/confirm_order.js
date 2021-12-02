@@ -4,16 +4,10 @@ $(document).ready(function () {
 
 	loadOrders();
 
-	//eventlistener for submit(confirm) button
-	$(document).on('submit', "#form2", function (event) {
-
-		// prevent from submitting a form
+	//eventlistener for submit button
+	$(document).on('submit', "#orderform", function (event) {
 		event.preventDefault();
-		console.log("jquery");
-		const str = $(this).serialize();
-		//	const orderid = $('#orderdataid').val();
-		console.log("str data",str);
-		//post confirmed_at to now()
+	//	const str = $(this).serialize();
 		confirmOrders(this);
 	});
 });
@@ -32,24 +26,21 @@ const loadOrders = function () {
 		})
 }
 
+//render orders in 3 containers
 const renderOrderData = function (orders) {
-	console.log("in jquery", orders);
 	$('.order-container1').empty();
 	$('.order-container2').empty();
 	$('.order-container3').empty();
+
 	for (let order of orders) {
-		
 		if (order.ready_at !== null) {
 			// hide estimated time and show created_at time
 			let $orderData = createOrderElement(order,true,false);
-	
 			$('.order-container3').append($orderData);
-			
 		}
 		else if(order.confirmed_at !== null ){
 			let $orderData = createOrderElement(order,false,true);
 			$('.order-container2').append($orderData);
-		
 		}
 		else {
 			let $orderData = createOrderElement(order,false,true);
@@ -60,12 +51,9 @@ const renderOrderData = function (orders) {
 }
 
 const createOrderElement = function (orderData,hideEstTime,created_at) {
-
 	//time when order was created (e.g.10 days ago)
-	const $time1 = timeago.format(orderData.created_at);
+	const $ordertime = timeago.format(orderData.created_at);
 
-	//render orders data
-	
 	let formAction,submit_button; 
 
 	if (orderData.ready_at !== null) {
@@ -83,33 +71,25 @@ const createOrderElement = function (orderData,hideEstTime,created_at) {
 	}
 
 	const $orderItem = orderData.picked_up_at === null ? $(`<article class="art-order">
-			
-				<form class="confirmation-form" id="form2" method= "POST" action="${formAction}" >
-					
-								Order id:	<input type ="text" name="order_id" size="2" value= ${orderData.id} /> 
-								User id:	<input type ="text" name="user_id" size="2" value= ${orderData.user_id} /> 
-								${hideEstTime ? ` <input type ="hidden" id="time" size="2" value= ${orderData.estimated_time} />` : 
+				<form class="confirmation-form" id="orderform" method= "POST" action="${formAction}" >
+								Order id:	<input type ="text" name="order_id" size="2" value= ${orderData.id} readonly /> 
+								User id:	<input type ="text" name="user_id" size="2" value= ${orderData.user_id} readonly/> 
+								${hideEstTime ? ` <input type ="hidden" id="estime" size="2" value= ${orderData.estimated_time} />` : 
 							`<br>Estimated time: <input type ="text" name="time" size="2" value= ${orderData.estimated_time} />`}
-							${created_at ? '' : `<br>Order Placed:	 ${$time1} `}
-						
+							${created_at ? '' : `<br>Order Placed:	 ${$ordertime} `}
 									<button type="submit" id="confirm">${submit_button}</button>
 									<hr>
 									</form>
 					</article>`): '';
 	
-					
 	return $orderItem;
 }
 
-// when submit button of a form is pressed in container 
+// send data to database when submit button of a form is pressed in container 
 const confirmOrders = function (orderData) {
 	const str= $(orderData).serialize();
-	//alert(str);
 	let formAction = orderData.action; 
 
-	console.log("formaction",formAction);
-	
-	console.log("order----data", str);
 	$.ajax({
 		url: formAction,
 		method: 'POST',
