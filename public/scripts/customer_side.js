@@ -11,14 +11,17 @@ $(document).ready(function() {
   // this creates the food picture and price
 
   const create_picture_element = (item) =>  {
-    const {id, photo, price} = item;
+    const {id, name, photo, price} = item;
     console.log("this is id and photo:" , id, photo);
     let html = 
     `<div class="dish_and_price">
       <div class= "dish dish_${id}">         
         <img class="dish_img" src="${photo}"/>
       </div>
-        <div class="dish_price">${price}</div>
+        <div class="dish_name_price">
+          <div class="dish_name">${name}</div>
+          <div class="dish_price">${price}</div>
+        </div>
     </div>`;
     return html
   }

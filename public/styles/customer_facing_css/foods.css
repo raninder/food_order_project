@@ -45,11 +45,17 @@ h2 {
   width: 20em;
 }
 
+.dish_name_price{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  font-weight: bold;
+  margin-top: 0.5em;
+}
+
 .dish_price {
   font-size: large;
-  font-weight: bold;
   display: flex;
   justify-content: center;
-  margin-top: 0.5em;
 
 }
