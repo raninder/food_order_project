@@ -6,7 +6,7 @@ $(document).ready(function() {
     const {id, name, photo, price} = item;
     // console.log("this is id and photo:" , id, photo);
     let html =
-    `<div class="dish_and_price">
+    `<div class="dish_and_price" onClick="">
       <div class= "dish dish_${id}">
         <img class="dish_img" id="photo_${id}" src="${photo}"/>
       </div>
@@ -36,6 +36,8 @@ $(document).ready(function() {
         return data;
       });
   };
+  // save food name, food price * quantity
+  const orderList = {};
 
   const attachClickHandler = () => {
     $(".dish_img").click(event => {
@@ -48,26 +50,32 @@ $(document).ready(function() {
       const dishImg = event.currentTarget.currentSrc;
       const dishData = {dishName, dishPrice, dishImg, uniqueId};
 
+      // add food on the order list, if the food already exists, add quantity
       if (!$(`#name_${uniqueId}`).val()) {
         renderOrders(dishData);
-        $(".total").hide();
         $(".checkout_price").val();
       } else {
         let $quantity = $(`#quantity_${uniqueId}`).val();
         $quantity++;
         $(`#quantity_${uniqueId}`).val($quantity);
         $(`#price_${dishData.uniqueId}`).val(dishPrice * $quantity);
-        $(".total").val(dishPrice * $quantity);
       }
 
-      let sum = 0;
-      $('.total').each(() => {
-        if (!isNaN($('.total').val())) {
-          console.log(sum);
-          sum += parseInt($('.order_item_price').val());
-        }
+      // add food name: price
+      let foodName = $(`#name_${dishData.uniqueId}`).val();
+      let foodPrice = $(`#price_${dishData.uniqueId}`).text();
+      orderList[foodName] = foodPrice;
+
+      // sum all the price on the order list
+      let priceOfFood = Object.values(orderList);
+      let totalPrice = priceOfFood.reduce((pre, cur) => {
+        pre = Number(pre);
+        cur = Number(cur);
+        pre += cur;
+        return pre;
       });
-      $('.checkout_price').val(sum);
+      // total price
+      $(".checkout_price").val(totalPrice);
     });
   };
 
@@ -76,14 +84,13 @@ $(document).ready(function() {
     `<div class= "order_item">
     <img class="order_food_image" src="${dishData.dishImg}">
     <div class="order_item_name_quantity_price">
-      <input type="text" name="dish_name" class="order_item_name" id="name_${dishData.uniqueId}" value="${dishData.dishName}" readonly/>
+      <input type="text" name="dish_name_${dishData.uniqueId}" class="order_item_name" id="name_${dishData.uniqueId}" value="${dishData.dishName}" readonly/>
       <div class="order_item_quantity_price">
-      $<output type="number" name="dish_price" class="order_item_price" id="price_${dishData.uniqueId}">${dishData.dishPrice}</output>
-      <input type="number" name="dish_quantity" class="order_item_quantity" id="quantity_${dishData.uniqueId}" value="1"/>
+      $<output type="number" name="dish_price_${dishData.uniqueId}" class="order_item_price" id="price_${dishData.uniqueId}">${dishData.dishPrice}</output>
+      <input type="number" name="dish_quantity_${dishData.uniqueId}" class="order_item_quantity" id="quantity_${dishData.uniqueId}" value="1"/>
       </div>
     </div>
-    </div>
-    <span class="total" for="total_price">${dishData.dishPrice}</span>`;
+    </div>`;
     $(".order_area_items").append(food);
   };
   $load_menu();
