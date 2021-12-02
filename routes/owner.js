@@ -33,8 +33,7 @@ module.exports = (db) => {
       res.status(400).json({ error: 'invalid request: no data in POST body'});
       return;
     }
-    console.log("req.body owner.js", req.body);
-    console.log("order id:",orderId);
+    
     const time = req.body.time;
     db.placeOrder(orderId, time)
       .then(order => {
@@ -91,8 +90,7 @@ module.exports = (db) => {
 
   // add new food
   router.post('/menu', (req, res) => {
-    //const foodInfo = req.body.food_info;
-    //console.log(req.body);
+
     db.addNewFood(req.body)
       .then(foods => res.json(foods))
       .catch(err => console.log(err.message));
@@ -109,7 +107,7 @@ module.exports = (db) => {
   // delete food
   router.post('/menu/delete', (req, res) => {
     const foodId = req.body.id;
-    console.log("food_id owner", req.body);
+    
     db.deleteFood(foodId)
       .then(foods => res.json(foods))
       .catch(err => console.log(err.message));

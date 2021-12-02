@@ -160,11 +160,11 @@ const pickedUp = (orderId) => {
 exports.pickedUp = pickedUp;
 
 const addNewFood = (food) => {
-  const { name, picture_url, estimated_time, price } = food;
-  const queryParams = [name, picture_url, estimated_time, price];
+  const { name, photo, price } = food;
+  const queryParams = [name, photo, price];
   const queryString = `
-  INSERT INTO foods (name, picture_url, estimated_time, price)
-  VALUES ($1, $2, $3, $4)
+  INSERT INTO foods (name, photo, price)
+  VALUES ($1, $2, $3)
   RETURNING *;`;
 
   return db.query(queryString, queryParams).then(res => res.rows);
@@ -183,12 +183,12 @@ const soldOut = (foodId) => {
 };
 exports.soldOut = soldOut;
 // delete food from database
-const deleteFood = (foodId) => {
+const deleteFood = (id) => {
   return db
     .query(`
     DELETE FROM foods
     WHERE id = $1;
-    `, [foodId])
+    `, [id])
     .then(res => res.rows);
 };
 exports.deleteFood = deleteFood;
