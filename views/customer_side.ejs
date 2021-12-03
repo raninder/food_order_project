@@ -13,6 +13,8 @@
 
   <link rel="stylesheet" href="../styles/customer_facing_css/layout.css" type="text/css" />
   <link rel="stylesheet" href="../styles/customer_facing_css/order_status.css" type="text/css" />
+  <link rel="stylesheet" href="../styles/customer_facing_css/button.css" type="text/css" />
+
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js"
     integrity="sha512-SVDh1zH5N9ChofSlNAK43lcNS7lWze6DTVx1JCXH1Tmno+0/1jMpdbR8YDgDUfcUrPp1xyE53G42GFrcM0CMVg=="
@@ -24,6 +26,7 @@
   <script type="text/javascript" src="/scripts/order_status.js"></script>
   <script type="text/javascript" src="/scripts/user_order_history.js"></script>
   <script type="text/javascript" src="/scripts/place_order.js"></script>
+  <script type="text/javascript" src="/scripts/order_list.js"></script>
 
   <!-- external js -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
@@ -60,34 +63,38 @@
   <div class="order_status"></div>
   <!-- order history -->
   <div class="order_history"></div>
-  <div class="order_area">
 
-    <!-- order list -->
-    <div class= "order_list">
-      <div id= "order_area_title">Your Current Order:</div>
-      <form>
-      <div class="order_area_items" ></div>
-    </div>
-    <div class="order_icon">
-      <div class="checkout">
-        <div class="checkout_title">
-          <span style="font-size: xx-large;"><b>Total</b></span><br>
-        $<output type="number" name="total_price" class="checkout_price">0</output>
+  <!-- order list -->
+  <div class="body">
+    <div class="order_area">
+      <div class="order_box">
+        <div class= "order_list">
+          <div id= "order_area_title">Your Current Order:</div>
+          <form>
+            <div class="order_area_items" ></div>
+          </div>
+          <div class="order_icon">
+            <div class="checkout">
+              <div class="checkout_title">
+                <span style="font-size: xx-large;"><b>Total</b></span><br>
+                $<output type="number" name="total_price" class="checkout_price">0</output>
+              </div>
+              <button class="payment" type="submit"><i class="fas fa-money-check-alt"></i></button>
+            </form>
+            <span>Click To Pay</span>
+          </div>
+        </div>
       </div>
-        <button type="submit"><i class="fas fa-money-check-alt"></i></button>
-      </form>
-        <span>Click To Pay</span>
-      </div>
     </div>
+
+      <!-- Page-specific (main) content here -->
+      <div class="wrap_dish_area">
+        <div class="dish_area">
+          <h2>Available Dishes</h2>
+          <main class="foods">
+          </main>
+        </div>
+      </div>
   </div>
-
-    <!-- Page-specific (main) content here -->
-    <div class="wrap_dish_area">
-      <div class="dish_area">
-        <h2>Available Dishes</h2>
-        <main class="foods">
-        </main>
-      </div>
-    </div>
 </body>
 </html>
