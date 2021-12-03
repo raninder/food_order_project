@@ -8,6 +8,7 @@
   touch-action: manipulation;
   width: 100%;
   color: white;
+  font-size: 25px;
 }
 .your_order:hover {
   color: #fff;
@@ -25,6 +26,7 @@
   touch-action: manipulation;
   width: 100%;
   color: white;
+  font-size: 25px;
 }
 .your_history:hover {
   color: #fff;
