@@ -19,7 +19,6 @@ module.exports = (db) => {
     res.render('customer_side');
   });
 
-
   // get user's information from users table
   router.get('/:id/info', (req, res) => {
     const userId = req.params.id;
@@ -48,8 +47,9 @@ module.exports = (db) => {
     const userId = req.params.id;
     db.addOrder(order, userId)
       .then(data => {
-        // sms.sendNewOrder();
         res.json(data);
+        //send message to owner
+        sms.sendNewOrder();
       })
       .catch(err => {
         console.log(err.message);
