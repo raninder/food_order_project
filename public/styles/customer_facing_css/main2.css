@@ -12,7 +12,7 @@ nav {
 }
 
 #page_title {
-  margin-top: 2em;
+  margin-top: 1em;
   display: flex;
   font-family: "molluca" ;
   font-size: 2em;
@@ -34,16 +34,16 @@ nav {
   .menu_your_order_buttons {
     display: flex;
     flex-direction: row;
-    font-size: 16px;
-    justify-content: center;
+    font-size: 20px;
+    justify-content: space-around;
     padding-bottom: 1em;
     /* margin-right: 10%; */
 
   }
-
+/*
   .menu_your_order_buttons:hover {
     color: yellow
-  }
+  } */
 
 
     #menu_button {
@@ -80,4 +80,3 @@ nav {
       #user_purchase_icons {
         border: solid red 1px;
         flex: 0 0 33%; } */
-

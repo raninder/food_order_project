@@ -10,7 +10,7 @@ $(document).ready(function() {
     });
     //quatities
     const qty = [];
-    $('input[name="qty"]').each((index, item) => {
+    $('output[name="qty"]').each((index, item) => {
       qty.push(item.value);
     });
     //prices
