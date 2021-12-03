@@ -1,10 +1,8 @@
 $(document).ready(function() {
 
   // this creates the food picture and price
-
   const create_picture_element = (item) =>  {
     const {id, name, photo, price} = item;
-    // console.log("this is id and photo:" , id, photo);
     let html =
     `<div class="dish_and_price" onClick="">
       <div class= "dish dish_${id}">
@@ -84,10 +82,10 @@ $(document).ready(function() {
     `<div class= "order_item">
     <img class="order_food_image" src="${dishData.dishImg}">
     <div class="order_item_name_quantity_price">
-      <input type="text" name="dish_name_${dishData.uniqueId}" class="order_item_name" id="name_${dishData.uniqueId}" value="${dishData.dishName}" readonly/>
+      <input type="text" name="name" class="order_item_name" id="name_${dishData.uniqueId}" value="${dishData.dishName}" readonly/>
       <div class="order_item_quantity_price">
-      $<output type="number" name="dish_price_${dishData.uniqueId}" class="order_item_price" id="price_${dishData.uniqueId}">${dishData.dishPrice}</output>
-      <input type="number" name="dish_quantity_${dishData.uniqueId}" class="order_item_quantity" id="quantity_${dishData.uniqueId}" value="1"/>
+      $<output type="number" name="price" class="order_item_price" id="price_${dishData.uniqueId}">${dishData.dishPrice}</output>
+      <input type="number" name="qty" class="order_item_quantity" id="quantity_${dishData.uniqueId}" value="1"/>
       </div>
     </div>
     </div>`;
