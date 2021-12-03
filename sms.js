@@ -7,8 +7,8 @@ const sendNewOrder = () => {
   client.messages
     .create({
       body: 'New Order has been sent, Please check it out',
-      from: '+1360515',
-      to: '+1778901'
+      from: '+12264070082',
+      to: '+14165800841'
     })
     .then(message => console.log(message.sid));
 };
@@ -19,8 +19,8 @@ const confirmedOrder = (time) => {
   client.messages
     .create({
       body: `Thank you for your order! Your order is confirmed, Estimated time is ${time} mins`,
-      from: '+13605154640',
-      to: '+17789'
+      from: '+12264070082',
+      to: '+14165800841'
     })
     .then(() => {
       // send reminder SMS to user when order will be ready in 5 mins
@@ -42,8 +42,8 @@ const readyToPickUp = () => {
   client.messages
     .create({
       body: 'Your order is ready to pick up',
-      from: '+13605154640',
-      to: '+17789030711'
+      from: '2264070082',//trilio
+      to: '+17789030711'//our
     })
     .then(message => console.log(message.sid));
 };
