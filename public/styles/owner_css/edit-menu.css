@@ -29,3 +29,13 @@ table {
   width: 60%;
   margin-left: 100px;
 }
+
+label{
+  display: inline-block;
+  clear: left;
+  width: 250px;
+  text-align: right;
+}
+input {
+display: inline-block;
+}

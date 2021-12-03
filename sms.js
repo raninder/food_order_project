@@ -42,8 +42,8 @@ const readyToPickUp = () => {
   client.messages
     .create({
       body: 'Your order is ready to pick up',
-      from: 'server phone number',
-      to: 'user phone number'
+      from: '2264070082',//trilio
+      to: '+1416'//our
     })
     .then(message => console.log(message.sid));
 };
