@@ -1,0 +1,41 @@
+.your_order {
+  background-color: rgba(187, 169, 161, 0.678);
+  outline: none;
+  border: none;
+  appearance: none;
+  border-radius: 15px;
+  min-height: 50px;
+  touch-action: manipulation;
+  width: 100%;
+  color: white;
+}
+.your_order:hover {
+  color: #fff;
+  background-color: #683232;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+.your_history {
+  background-color: rgba(187, 169, 161, 0.678);
+  outline: none;
+  border: none;
+  appearance: none;
+  border-radius: 15px;
+  min-height: 50px;
+  touch-action: manipulation;
+  width: 100%;
+  color: white;
+}
+.your_history:hover {
+  color: #fff;
+  background-color: #683232;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.payment {
+  border: none;
+  outline: none;
+  background-color: rgba(255, 255, 255, 0);
+}
+

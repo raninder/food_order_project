@@ -6,8 +6,9 @@
   text-align: left;
   margin-left: 5%;
   margin-right: 5%;
-  background-color: blanchedalmond;
+  background-color: rgb(213, 251, 197);
   padding-left: 100px;
+  height: 250px;
 }
 
 .order_history {
@@ -19,9 +20,27 @@
   margin-left: 5%;
   margin-right: 5%;
   background-color: blanchedalmond;
-  padding-left: 100px;
 }
 
+#order_history {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-content: center;
+  width: 60%;
+  border: 5px double black;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+#history {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  width: 80%;
+  margin-bottom: 10px;
+}
 
 .status {
   padding-left: 50px;
@@ -29,9 +48,16 @@
   /* width: auto; */
 }
 
+.order_info {
+  font-size: 20px
+}
+
 ol {
-  font-size: xx-large;
+  font-size: large;
+  border: 1px solid black;
+  width: 100%;
 }
 li {
   font-size: large;
+  margin-top: 15px;
 }

@@ -10,7 +10,7 @@ $(document).ready(function() {
     });
     //quatities
     const qty = [];
-    $('input[name="qty"]').each((index, item) => {
+    $('output[name="qty"]').each((index, item) => {
       qty.push(item.value);
     });
     //prices
@@ -20,20 +20,23 @@ $(document).ready(function() {
     });
 
     let orderDetail = { "name": name, "qty": qty, "price": price };
-    // send order detail to server
-    $.ajax({
-      url: `/users/${userId}/order`,
-      method: "POST",
-      dataType: "json",
-      data: orderDetail
-    });
 
+    // send order detail to server
+    if (orderDetail.name.length) {
+      $.ajax({
+        url: `/users/${userId}/order`,
+        method: "POST",
+        dataType: "json",
+        data: orderDetail,
+        success: sendMessage()
+      });
+    } else {
+      alert("There's no order on your order list");
+    }
+  });
+  const sendMessage = () => {
     alert("Your order has been sent to restaurant!");
     $(".order_item").remove();
     $(".checkout_price").val(0);
-  });
+  };
 });
-
-
-
-

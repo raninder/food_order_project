@@ -9,15 +9,18 @@ $(document).ready(() => {
     (picked_up_at) ? $completed = timeago.format(`${picked_up_at}`) : $completed = 'in progress';
 
     let $status =
-    `<h3>Your Order History</h3>
-    <span>Order Number: <b>${order_id}</b></span>
+    `<div id="order_history">
+    <div id="history">
+    <h3>Your Order History</h3>
+    <span class="order_info">Order Number: <b>${order_id}</b></span>
     <br>
       <div class="order_list">
-      <ol class="list_of_food${$class}">your order list<hr></ol>
+      <ol class="list_of_food${$class}">your order list</ol>
     </div>
-    <span>Total Price : <b>$${total_price}</b></span><br>
-    <span>Order Status : <b>${$completed}</b></span>
-    <hr>`;
+    <span class="order_info">Total Price : <b>$${total_price}</b></span><br>
+    <span class="order_info">Order Status : <b>${$completed}</b></span>
+    </div>
+    </div>`;
 
     return $status;
   };
@@ -59,7 +62,7 @@ $(document).ready(() => {
   $(".order_history").hide();
   $(".your_history").click(() => {
     $(".order_history").toggle("slow");
+    $(".order_box").toggle("slow");
   });
-
 });
 

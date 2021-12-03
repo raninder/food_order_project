@@ -16,7 +16,7 @@ $(document).ready(() => {
     let $status =
     `<h3>Your Order Status</h3>
     <h4>Order Number : ${order_id}</h4>
-    <span class="status"><span>${statusMessage}<span></span>`;
+    <span class="status"><b>${statusMessage}</b></span>`;
     return $status;
   };
 
