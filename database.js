@@ -44,41 +44,54 @@ const getOrderStatus = () => {
 };
 exports.getOrderStatus = getOrderStatus;
 // user places an order
-//const addOrder = (order, userId) => {
-  const addOrder = (order) => {
-  // needs to get data from front-end
-  // order =
-  // {  { food_name or foodId : name1 or 1, quantity: 2, price: 10},
-  //    { food_name or foodId : name3 or 3, quantity: 5, price: 90},
-  //    { food_name or foodId : name4 or 4, quantity: 2, price: 50} };
-
-  let totalPrice = 0;
-  for (const food in order) {
-    totalPrice += order[food].price;
-  }
-
-  return db
-    .query(`
+const addOrder = (order, userId) => {
+  // if order is mutiple orders
+  if (Array.isArray(order.name)) {
+    const totalPrice = order.price.reduce((pre, cur) => {
+      pre = Number(pre);
+      cur = Number(cur);
+      pre += cur;
+      return pre;
+    });
+    // add order data to orders table
+    return db
+      .query(`
     INSERT INTO orders (user_id, total_price, created_at)
     VALUES ($1, $2, Now())
     RETURNING *;
-    `, [1,totalPrice])
-    //[userId, totalPrice])
-    .then((res) => {
-      const order_id = res.rows[0].id;
-      for (const food in order) {
-        db.query(`
+    `, [userId, totalPrice])
+      .then(res => {
+        const orderId = res.rows[0].id;
+        // add order details to order_details table
+        for (const i in order.name) {
+          db.query(`
         INSERT INTO order_details ( order_id, food_name, quantity )
         VALUES ($1, $2, $3)
         RETURNING *;
-        `, [order_id, food_name, quantity])
-        //[orderId, order[food].foodId, order[food].quantity])
-          .then(res => {
-            console.log("order details db", res.rows);
-            return res.rows;
+        `, [orderId, order.name[i], order.qty[i]])
+            .then(res => res.rows);
+        }
       });
-    };
-});
+  // if order is a single order
+  } else {
+    return db
+      .query(`
+    INSERT INTO orders (user_id, total_price, created_at)
+    VALUES ($1, $2, Now())
+    RETURNING *;
+    `, [userId, order.price])
+      .then(res => {
+        const orderId = res.rows[0].id;
+        // add order details to order_details table
+        db.query(`
+          INSERT INTO order_details ( order_id, food_name, quantity )
+          VALUES ($1, $2, $3)
+          RETURNING *;
+          `, [orderId, order.name, order.qty])
+          .then(res => res.rows);
+      });
+  }
+};
 exports.addOrder = addOrder;
 
 // Owner
@@ -91,8 +104,8 @@ const getNewOrder = () => {
     `)
     .then(res => res.rows);
 };
-
 exports.getNewOrder = getNewOrder;
+
 // confirm the order
 const placeOrder = (id, time) => {
   return db
@@ -239,4 +252,3 @@ const getUserHistory = (userId) => {
     .then(res => res.rows);
 };
 exports.getUserHistory = getUserHistory;
-

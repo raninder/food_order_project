@@ -14,7 +14,7 @@ $(document).ready(function() {
       <span>User ID : <b>${user_id}</b> User Name: <b>${user_name}</b></span>
       <h3> Food list </h3>
         <ol class="food_list${$class}"></ol>
-        <p>Total Price - $${total_price}</p>
+        <p>Total Price - <b>$${total_price}</b></p>
         <p>Order Completed: <b>${$completed}</b>
     </div>
     `;
@@ -64,8 +64,8 @@ $(document).ready(function() {
   $("#order_history").click(() => {
     $(".order_history").toggle("slow");
     $('.history').toggle("slow");
-	
+
     $('.header').toggle("slow");
-		$('.menu').hide();
+    $('.menu').hide();
   });
 });

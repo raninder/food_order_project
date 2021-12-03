@@ -16,12 +16,7 @@ $(document).ready(() => {
     let $status =
     `<h3>Your Order Status</h3>
     <h4>Order Number : ${order_id}</h4>
-    <span class="status"><span>${statusMessage}<span></span>`;
-    return $status;
-  };
-  // if user hasn't placed any order yet
-  const $noOrderHistory = () => {
-    let $status = `<h3>We can not find your order</h3>`;
+    <span class="status"><b>${statusMessage}</b></span>`;
     return $status;
   };
 
@@ -30,9 +25,6 @@ $(document).ready(() => {
       if (order.picked_up_at === null && order.created_at !== null) {
         $(".order_status").empty();
         $(".order_status").append($orderStatus(order));
-      } else {
-        $(".order_status").empty();
-        $(".order_status").append($noOrderHistory());
       }
     });
   };

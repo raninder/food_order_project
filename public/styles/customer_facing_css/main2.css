@@ -9,13 +9,15 @@ nav {
   /* z-index: 100; */
 
 
+
 }
 
 #page_title {
-  margin-top: 2em;
+  margin-top: 1em;
   display: flex;
-  font-family: "molluca" ;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-size: 2em;
+  margin-top: .25em;
   justify-content: center;
 
 }
@@ -31,19 +33,30 @@ nav {
 }
 
 
+  .buttons {
+    font-size: 1.5em;
+    border-radius: 25px
+
+  }
+  .buttons:hover{
+    background-color: orangered;
+  }
+
+
+
   .menu_your_order_buttons {
     display: flex;
     flex-direction: row;
-    font-size: 16px;
-    justify-content: center;
+    font-size: 20px;
+    justify-content: space-around;
     padding-bottom: 1em;
     /* margin-right: 10%; */
 
   }
-
+/*
   .menu_your_order_buttons:hover {
     color: yellow
-  }
+  } */
 
 
     #menu_button {
@@ -80,4 +93,3 @@ nav {
       #user_purchase_icons {
         border: solid red 1px;
         flex: 0 0 33%; } */
-
