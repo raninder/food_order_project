@@ -44,7 +44,8 @@ const getOrderStatus = () => {
 };
 exports.getOrderStatus = getOrderStatus;
 // user places an order
-const addOrder = (order, userId) => {
+//const addOrder = (order, userId) => {
+  const addOrder = (order) => {
   // needs to get data from front-end
   // order =
   // {  { food_name or foodId : name1 or 1, quantity: 2, price: 10},
@@ -61,19 +62,23 @@ const addOrder = (order, userId) => {
     INSERT INTO orders (user_id, total_price, created_at)
     VALUES ($1, $2, Now())
     RETURNING *;
-    `, [userId, totalPrice])
+    `, [1,totalPrice])
+    //[userId, totalPrice])
     .then((res) => {
-      const orderId = res.rows[0].id;
+      const order_id = res.rows[0].id;
       for (const food in order) {
         db.query(`
-        INSERT INTO order_details ( order_id, food_id, quantity )
+        INSERT INTO order_details ( order_id, food_name, quantity )
         VALUES ($1, $2, $3)
         RETURNING *;
-        `, [orderId, order[food].foodId, order[food].quantity])
-          .then(res => res.rows);
-      }
-    });
-};
+        `, [order_id, food_name, quantity])
+        //[orderId, order[food].foodId, order[food].quantity])
+          .then(res => {
+            console.log("order details db", res.rows);
+            return res.rows;
+      });
+    };
+});
 exports.addOrder = addOrder;
 
 // Owner
@@ -86,10 +91,7 @@ const getNewOrder = () => {
     `)
     .then(res => res.rows);
 };
-// WHERE picked_up_at IS NULL
-//     AND ready_at IS NULL
-//     AND confirmed_at IS NULL
-//     AND created_at IS NOT NULL;
+
 exports.getNewOrder = getNewOrder;
 // confirm the order
 const placeOrder = (id, time) => {
