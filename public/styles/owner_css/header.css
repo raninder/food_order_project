@@ -12,14 +12,14 @@
   height: auto;
 }
 
-  
+
 /* three order containers */
 #one{
   display: flex;
   flex-direction: column;
   background-color:blanchedalmond;
   border: 1px solid black;
-  width: 33%; 
+  width: 33%;
   padding: 20px;
   margin-right: 0.5em;
 }
@@ -56,11 +56,11 @@ h3{
 
 }
 #two input[type=text] {
-  background-color: rgb(56, 133, 158);
+  background-color: blanchedalmond;
   border:0px;
 }
 #three input[type=text] {
-  background-color: lightblue;
+  background-color: blanchedalmond;
   border:0px;
 }
 
