@@ -5,6 +5,7 @@
   align-items:flex-start;
   justify-content: flex-start;
   color: black;
+  margin-top: 8em;
   margin-left: 40px;
   margin-right: 40px;
   width: 80%;
@@ -16,36 +17,43 @@
 #one{
   display: flex;
   flex-direction: column;
-  background-color:lightblue;
+  background-color:blanchedalmond;
   border: 1px solid black;
   width: 33%; 
   padding: 20px;
+  margin-right: 0.5em;
 }
 
 #two{
   display: flex;
   flex-direction: column;
-  background-color:rgb(56, 133, 158);
+  background-color:blanchedalmond;
   border: 1px solid black;
   width: 33.5%;
   padding: 20px;
+  margin-right: 0.5em;
+
   /* height: 606px; */
 }
 
 #three{
   display: flex;
   flex-direction: column;
-  background-color:lightblue;
+  background-color:blanchedalmond;
   border: 1px solid black;
   width: 33.5%;
   padding: 20px;
 }
 
+h3{
+  text-align: center;
+}
 
 /* forms in three order containers */
 #one input[type=text] {
-  background-color: lightblue;
+  background-color: transparent;
   border:0px;
+
 }
 #two input[type=text] {
   background-color: rgb(56, 133, 158);

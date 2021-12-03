@@ -3,7 +3,7 @@ div.history {
   display: flex;
   flex-direction: column;
   align-self: flex-end;
-  background-color: rgb(186, 189, 243);
+  background-color: navajowhite;
   float: right;
   padding: 30px 30px;
   padding-top: 0;

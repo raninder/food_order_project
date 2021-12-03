@@ -18,12 +18,12 @@
       align-self: flex-end;
     }
 
-    .fas {
+    .fa-money-check-alt {
       font-size: 1em;
       }
 
 
-    .fas:hover {
+    .fa-money-check-alt:hover {
     color: green;
     }
 

@@ -9,13 +9,14 @@ nav {
   /* z-index: 100; */
 
 
+
 }
 
 #page_title {
-  margin-top: 2em;
   display: flex;
-  font-family: "molluca" ;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-size: 2em;
+  margin-top: .25em;
   justify-content: center;
 
 }
@@ -29,6 +30,17 @@ nav {
   justify-content: space-around;
 
 }
+
+
+  .buttons {
+    font-size: 1.5em;
+    border-radius: 25px
+
+  }
+  .buttons:hover{
+    background-color: orangered;
+  }
+
 
 
   .menu_your_order_buttons {
