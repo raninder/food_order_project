@@ -19,20 +19,12 @@ $(document).ready(() => {
     <span class="status"><span>${statusMessage}<span></span>`;
     return $status;
   };
-  // if user hasn't placed any order yet
-  const $noOrderHistory = () => {
-    let $status = `<h3>We can not find your order</h3>`;
-    return $status;
-  };
 
   const $renderStatus = orders => {
     orders.forEach(order => {
       if (order.picked_up_at === null && order.created_at !== null) {
         $(".order_status").empty();
         $(".order_status").append($orderStatus(order));
-      } else {
-        $(".order_status").empty();
-        $(".order_status").append($noOrderHistory());
       }
     });
   };

@@ -27,18 +27,16 @@ module.exports = (db) => {
 
   // confirm new order
   router.post('/new', (req, res) => {
-
     const orderId = req.body.order_id;
     if (!req.body) {
       res.status(400).json({ error: 'invalid request: no data in POST body'});
       return;
     }
     const time = req.body.time;
-
     db.placeOrder(orderId, time)
       .then(order => {
-        //send message to user - order has confirmed, reminder message
-        // sms.confirmedOrder(time);
+        // send message to user - order has confirmed, reminder message
+        sms.confirmedOrder(time);
         return res.json(order);
       })
       .catch(err => console.log(err.message));
@@ -60,7 +58,7 @@ module.exports = (db) => {
     db.orderIsReady(orderId)
       .then(order => {
         // send message to user - ready to pick up
-        // sms.readyToPickUp();
+        sms.readyToPickUp();
         res.json(order);
       })
       .catch(err => console.log(err.message));
@@ -110,7 +108,6 @@ module.exports = (db) => {
   // delete food
   router.post('/menu/delete', (req, res) => {
     const foodId = req.body.id;
-
     db.deleteFood(foodId)
       .then(foods => res.json(foods))
       .catch(err => console.log(err.message));
