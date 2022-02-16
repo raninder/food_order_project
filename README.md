@@ -25,3 +25,9 @@ When an order is placed the restaurant receives the order via SMS. The restauran
 
  - Owner page allow an Owner to edit (add/delete/update) menu items. 
  !["Edit Menu"](docs/edit_menu.png)
+
+ - Add new Menu item. 
+ !["Add Menu"](docs/add_menu_item.png)
+
+ -Delete Menu Item
+ !["Delete Menu"](docs/delete_menu_item.png)
