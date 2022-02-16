@@ -108,9 +108,17 @@ module.exports = (db) => {
   // delete food
   router.post('/menu/delete', (req, res) => {
     const foodId = req.body.id;
+    
     db.deleteFood(foodId)
-      .then(foods => res.json(foods))
-      .catch(err => console.log(err.message));
+      .then(foods => 
+        {
+         console.log("delete food",res.json(foods));
+          return res.json(foods)
+        })
+      .catch(err => {
+       console.log("delete food",res.json(foods));
+        console.log(err.message);
+      })
   });
 
   // edit food
